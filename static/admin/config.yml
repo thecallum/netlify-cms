@@ -6,6 +6,8 @@ backend:
   preview_context: github/deployment
   auth_endpoint: auth
 
+  
+
 media_folder: static/img
 public_folder: /img
 
