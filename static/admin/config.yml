@@ -1,5 +1,9 @@
 backend:
-  name: test-repo
+  name: github
+  repo: thecallum/netlify-cms
+  branch: master
+  auth_type: implicit
+  preview_context: github/deployment
 
 media_folder: static/img
 public_folder: /img
