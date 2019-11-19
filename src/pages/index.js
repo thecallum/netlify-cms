@@ -1,19 +1,46 @@
 import React from "react"
-// import { Link, graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 
 // import Bio from "../components/bio"
 // import Layout from "../components/layout"
 // import SEO from "../components/seo"
 // import { rhythm } from "../utils/typography"
 
-class BlogIndex extends React.Component {
-  render() {
-    // const { data } = this.props
-    // const siteTitle = data.site.siteMetadata.title
-    // const posts = data.allMarkdownRemark.edges
+export default ({ data }) => {
+  const posts = data.allMarkdownRemark.nodes
 
-    return <p>test</p>
-  }
+  return (
+    <>
+      <p>Posts</p>
+
+      <hr />
+      <br />
+
+      {posts.map(({ frontmatter, html }, index) => {
+        const { title, description } = frontmatter
+
+        return (
+          <div key={index}>
+            <h1>{title}</h1>
+            <p>{description}</p>
+            {html}
+          </div>
+        )
+      })}
+    </>
+  )
 }
 
-export default BlogIndex
+export const query = graphql`
+  query MyQuery {
+    allMarkdownRemark {
+      nodes {
+        frontmatter {
+          title
+          description
+        }
+        html
+      }
+    }
+  }
+`
